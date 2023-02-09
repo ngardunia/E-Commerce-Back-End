@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
   // create a new category
   try {
     const categoryData = await Category.create({
-      category_id: req.body.category_id,
+      id: req.body.id,
     });
     res.status(200).json(categoryData);
   } catch (err) {
@@ -52,12 +52,12 @@ router.put('/:id', async (req, res) => {
   const updatedCategory = await Category.update(
     {
       // All the fields you can update and the data attached to the request body.
-      category_name: req.body.category_name,
+      id: req.body.id,
     },
     {
       // Gets a book based on the book_id given in the request parameters
       where: {
-        category_id: req.params.category_id,
+        id: req.params.id,
       },
     }
   );
@@ -70,7 +70,7 @@ router.delete('/:id', async (req, res) => {
   try {
     const categoryData = await Category.destroy({
       where: {
-        category_id: req.params.category_id,
+        id: req.params.id,
       },
     });
 
